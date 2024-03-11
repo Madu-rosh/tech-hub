@@ -1,0 +1,16 @@
+{
+  "name": "tech-hub",
+  "version": "1.0.0",
+  "description": "This application is a comprehensive Tech Hub Platform, integrating both client-side and server-side components into a seamless experience. Designed using the MERN stack (MongoDB, Express.js, React.js, and Node.js), it leverages a single-root project structure for straightforward setup and execution. To ensure optimal functionality, please update the .env files as necessary. The project initiates from the root directory, simplifying the start-up process and enhancing the development workflow. ",
+  "scripts": {
+    "start": "concurrently \"npm run start-server\" \"npm run start-client\"",
+    "start-server": "cd server && npm start",
+    "start-client": "cd client && npm start",
+    "install-server": "cd backend && npm install",
+    "install-client": "cd client && npm install",
+    "build-client": "cd client && npm run build",
+    "install-all": "npm install && cd server && npm install && cd ../client && npm install"
+  },
+  "author": "Roshan Karunarathna",
+  "license": "ISC"
+}
