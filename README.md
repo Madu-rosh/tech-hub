@@ -67,6 +67,6 @@ Distributed under the GNU GENERAL PUBLIC LICENSE License. See `LICENSE` for more
 
 ## Contact
 
-Your Name - [@rkvisit](https://twitter.com/rkvisit)
+Roshan Karunarathna - [@rkvisit](https://twitter.com/rkvisit)
 
 Project Link: [https://github.com/Madu-rosh/tech-hub](https://github.com/Madu-rosh/tech-hub)
