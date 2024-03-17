@@ -58,10 +58,11 @@ export const postsSeed = async () => {
     console.log("Posts seeded successfully.");
 };
 
+/*
 postsSeed().then(() => {
     console.log('Done seeding posts.');
-    mongoose.connection.close();
 }).catch((error) => {
     console.error("Seeding posts failed:", error);
-    mongoose.connection.close();
 });
+*/
+export default postsSeed;

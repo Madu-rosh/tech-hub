@@ -57,12 +57,12 @@ export const usersSeed = async () => {
   console.log("Users seeded successfully.");
 };
 
-usersSeed()
+/*usersSeed()
   .then(() => {
     console.log("Done seeding users.");
-    mongoose.connection.close();
   })
   .catch((error) => {
     console.error("Seeding users failed:", error);
-    mongoose.connection.close();
-  });
+  });*/
+
+export default usersSeed;
