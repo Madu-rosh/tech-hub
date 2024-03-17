@@ -1,5 +1,6 @@
 import express from 'express';
 import {
+    getCommentsByPost,
     createComment,
     editComment,
     deleteComment
@@ -8,13 +9,16 @@ import { verifyToken, verifyTokenAndRole } from '../middleware/auth.middleware';
 
 const router = express.Router();
 
+// Get comments by post
+router.get('/:postId', getCommentsByPost);
+
 // Create a comment (Available to all authenticated users)
-router.post('/:postId/comments', verifyToken, createComment);
+router.post('/:postId', verifyToken, createComment);
 
 // Edit a comment (Users can edit their own comments)
-router.put('/comments/:commentId', verifyToken, editComment);
+router.put('/:commentId', verifyToken, editComment);
 
 // Delete a comment (Admins and authors can delete any comments)
-router.delete('/comments/:commentId', verifyTokenAndRole(['admin', 'author']), deleteComment);
+router.delete('/:commentId', verifyTokenAndRole(['admin', 'author']), deleteComment);
 
 export default router;

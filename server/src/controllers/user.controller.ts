@@ -4,11 +4,16 @@ import jwt from 'jsonwebtoken';
 import { User } from '../database/models/users.model'; // Adjust the path according to your project structure
 
 // User Registration
+// User Registration
 export const registerUser = async (req: Request, res: Response) => {
     try {
-        const { name, email, password, role = 'user' } = req.body; // Default role is 'user'
-        const existingUser = await User.findOne({ email });
+        const { name, username, email, password, age } = req.body;
 
+        if (age < 18) {
+            return res.status(400).json({ message: 'You must be at least 18 years old to register.' });
+        }
+
+        const existingUser = await User.findOne({ email });
         if (existingUser) {
             return res.status(400).json({ message: 'User already exists' });
         }
@@ -16,23 +21,23 @@ export const registerUser = async (req: Request, res: Response) => {
         const hashedPassword = await bcrypt.hash(password, 10);
         const newUser = new User({
             name,
+            username,
             email,
             password: hashedPassword,
-            role,
+            role: 'user', // Default role
+            age,
         });
 
         await newUser.save();
 
-        // Optionally, you could log the user in immediately after registration
-        // by generating a token and sending it back as done in loginUser()
-
+        // Optionally, generate a token and send it back for immediate login
         res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
-        if (typeof error === "object" && error !== null && "message" in error) {
-            // Now it's safe to access error.message
+        if (error instanceof Error) {
+            // Now TypeScript knows `error` is an instance of Error and has a `message` property
             res.status(500).json({ message: error.message });
         } else {
-            // Handle the case where the error is not an object or doesn't have a message property
+            // Handle cases where the error might not be an instance of Error
             res.status(500).json({ message: "An unknown error occurred" });
         }
     }

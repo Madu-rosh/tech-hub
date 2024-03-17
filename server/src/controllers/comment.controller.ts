@@ -1,6 +1,17 @@
 import { Request, Response } from 'express';
 import { Comment } from '../database/models/comments.model'; // Update this path as necessary
 
+//view comments
+export const getCommentsByPost = async (req: Request, res: Response) => {
+    try {
+        const { postId } = req.params;
+        const comments = await Comment.find({ post: postId }).populate('author', 'name'); // Adjust according to your needs
+        res.json(comments);
+    } catch (error) {
+        res.status(500).json({ message: (error as any).message || "An unknown error occurred" });
+    }
+};
+
 // Create a new comment
 export const createComment = async (req: Request, res: Response) => {
     try {

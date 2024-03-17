@@ -43,7 +43,6 @@ const connectDB = async (url: string) => {
     console.log('All seeding operations complete.');
   } catch (error) {
     console.error(error);
-  } finally {
     mongoose.connection.close();
   }
 }
