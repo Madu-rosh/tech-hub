@@ -3,15 +3,15 @@ import { Post, IPost } from '../models/posts.model'; // Ensure IPost is correctl
 import { User, IUser } from '../models/users.model'; // Ensure IUser is correctly imported
 
 
-const findUserIdByName = async (name: string): Promise<string | null> => {
-    const user = await User.findOne({ name: name }).exec();
+const findUserIdByName = async (username: string): Promise<string | null> => {
+    const user = await User.findOne({ username: username }).exec();
     return user?._id.toString() || null;
 };
 
 export const postsSeed = async () => {
     // Find user IDs by names
-    const charlieBrownId = await findUserIdByName("Charlie Brown");
-    const danaScullyId = await findUserIdByName("Dana Scully");
+    const charlieBrownId = await findUserIdByName("charliebrown");
+    const danaScullyId = await findUserIdByName("danascully");
 
     // Ensure both users are found
     if (!charlieBrownId || !danaScullyId) {
